@@ -12,8 +12,6 @@ export const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
 
   const cartTotal = formatCurrency(cartItems.reduce((total, cartItem) => {
     const item = data?.find(i => i.id === cartItem.id)
-    console.log('item: ', item);
-    console.log('total: ', total);
     return total + (parseFloat(item?.price ||'0')) * cartItem.quantity;
   }, 0));
 
