@@ -13,9 +13,9 @@ const ProductCard = ({
   title
 }: Product) => {
   const {
+    decreaseCartQuantity,
     getItemQuantity,
     increaseCartQuantity,
-    decreaseCartQuantity,
     removeFromCart
   } = useShoppingCart();
 
@@ -32,11 +32,15 @@ const ProductCard = ({
       <Card.Body className='d-flex flex-column'>
         <Card.Title className='d-flex justify-content space-between align-items-baseline mb-4'>
           <span className='fs-2'>{title}</span>
-          <span className='ms-2 text-muted'>{formatCurrency(parseFloat(price))}</span>
+          <span className='ms-2 text-muted'>{formatCurrency(price)}</span>
         </Card.Title>
         <div className='mt-auto'>
           {quantity === 0 
-            ? (<Button className='w-100' onClick={() => increaseCartQuantity(id)}>+ Add to Cart</Button>) 
+            ? (
+                <Button className='w-100' onClick={() => increaseCartQuantity(id)}>
+                  + Add to Cart
+                </Button>
+              ) 
             : (
                 <div
                   className='d-flex align-items-center flex-column'
@@ -50,13 +54,13 @@ const ProductCard = ({
                     <span className="fs-3">{quantity}</span> in cart
                     <Button onClick={() => increaseCartQuantity(id)}>+</Button>
                   </div>
-                    <Button
-                      variant='danger'
-                      size='sm'
-                      onClick={() => removeFromCart(id)}
-                    >
-                      Remove
-                    </Button>
+                  <Button
+                    variant='danger'
+                    size='sm'
+                    onClick={() => removeFromCart(id)}
+                  >
+                    Remove
+                  </Button>
                 </div>
               )
           }

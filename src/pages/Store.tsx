@@ -1,14 +1,10 @@
 import { Col, Row } from 'react-bootstrap';
-import { useQuery } from '@tanstack/react-query';
 
 import { ProductCard } from '../components';
-import { Product } from '../utils/types';
-
-const getProductCatalog = async (): Promise<Product[]> => 
-  await (await fetch('https://fakestoreapi.com/products')).json();
+import { useCatalog } from '../context';
 
 const Store = () => {
-  const { data, isLoading, error } = useQuery<Product[]>(['products'], getProductCatalog);
+  const { data } = useCatalog();
 
   return (
     <Row md={2} xs={1} lg={3} className='g-3'>
@@ -20,7 +16,7 @@ const Store = () => {
         ))}
       </Col>
     </Row>
-  )
+  );
 };
 
 export default Store;

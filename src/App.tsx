@@ -3,10 +3,11 @@ import {Container} from 'react-bootstrap';
 
 import {About, Home, Store} from './pages';
 import {Navbar} from './components';
-import {ShoppingCartProvider} from './context/CartContext';
+import { CatalogProvider, ShoppingCartProvider } from './context';
 
 function App() {
   return (
+    <CatalogProvider>
     <ShoppingCartProvider>
       <Navbar />
       <Container className='mb-4'>
@@ -17,6 +18,7 @@ function App() {
         </Routes>
       </Container>
     </ShoppingCartProvider>
+    </CatalogProvider>
   );
 };
 
